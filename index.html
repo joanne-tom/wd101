@@ -1,11 +1,18 @@
-<style>
-    input#name:invalid:focus{
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registration Form</title>
+  <style>
+    input#name:invalid:focus {
         border: 1px solid red;
     }
-     input#email:invalid:focus{
+     input#email:invalid:focus {
         border: 1px solid red;
     }
 </style>
+</head>
+<body>
 <form id="user-form" style="text-align:center;margin-top: 200px;display: flex; flex-direction: column; align-items: center; border: 1px solid black; padding: 10px; border-radius: 10px;" class="form-example">
     <label for="name" style="font-size: x-large;margin-bottom: 10px;">Username
     </label>
@@ -22,7 +29,7 @@
     <button type="submit" id="submit" style="margin-bottom: 10px; background-color: lightgreen; padding: 12px 24px; font-size: 16px;border-radius: 6px;">Submit</button>
 </form>
 <div id="user-entries"></div>
-<script>
+<!--<script>
     const email=document.getElementById('email');
     email.addEventListener('input',() => ValidateEmail(email));
     const submit=document.getElementById('submit');
@@ -40,18 +47,17 @@
     dob.addEventListener('input',()=>ValidateAge(dob));
     function ValidateAge(element){
         const today=new Date();
-        const bday=element.value;
+        const bday=new Date(element.value);
         const age=Math.floor((Date.parse(today)-Date.parse(bday))/31536000000);
-        if (age<18){
-            element.setCustomValidity('You must be 18 years old');
-        }
-        else if(age>55){
-            element.setCustomValidity('You must be less than 55 years old');
+        if (age<18 || age>55){
+            element.setCustomValidity('You must be between 18 and 55 years old');
         }
         else{
             element.setCustomValidity('');          
         }
         element.reportValidity();
     }
-</script>
+</script>-->
 <script src="index.js"></script>
+</body>
+</html>
