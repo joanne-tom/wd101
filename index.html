@@ -1,68 +1,74 @@
-<!--<h1>Hello world</h1>
-<a href="index.html">Home</a>
-<img src="https://www.google.com/imgres?q=current%20edt%20time&imgurl=https%3A%2F%2Farahr.com%2Fstatic%2Fus-time-zone-map-91bca8fe4f3040203f6d318d31ce14fd.png&imgrefurl=https%3A%2F%2Farahr.com%2Ftime-zone%2F&docid=ve3G6kz7d-NBHM&tbnid=RWG-dEADN82N2M&vet=12ahUKEwjgoMjn9teNAxWBQ2cHHfo-MgQQM3oECGsQAA..i&w=1300&h=900&hcb=2&ved=2ahUKEwjgoMjn9teNAxWBQ2cHHfo-MgQQM3oECGsQAA" alt="Hey">-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Registration Form</title>
-  <style>
-    input#name:invalid:focus {
-        border: 1px solid red;
-    }
-     input#email:invalid:focus {
-        border: 1px solid red;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Registration form</title>
+    <style>
+        input#name:invalid:focus{
+            border:1px solid red;
+        }
+    </style>
 </head>
 <body>
-<form id="user-form" style="text-align:center;margin-top: 200px;display: flex; flex-direction: column; align-items: center; border: 1px solid black; padding: 10px; border-radius: 10px;" class="form-example">
-    <label for="name" style="font-size: x-large;margin-bottom: 10px;">Username
-    </label>
-    <input required type="text" id="name" style="margin-bottom: 10px;"><br>
-    <label for="email" style="font-size: x-large;margin-bottom: 10px;">Email
-    </label>
-    <input required type="email" id="email" style="margin-bottom: 10px;"><br>
-    <label for="password" style="font-size: x-large;margin-bottom: 10px;">Password</label>
-    <input required type="password" id="password" style="margin-bottom: 10px;"><br>
-    <label for="date" style="font-size: x-large;margin-bottom: 10px;">DOB</label>
-    <input required type="date" id="date" style="margin-bottom: 10px;"><br>
-    <label for="accept" style="font-size: x-large;margin-bottom: 10px;">Accept terms and conditions</label>
-    <input required type="checkbox" id="accept" style="margin-bottom: 10px;"><br>
-    <button type="submit" id="submit" style="margin-bottom: 10px; background-color: lightgreen; padding: 12px 24px; font-size: 16px;border-radius: 6px;">Submit</button>
-</form>
-<div id="user-entries"></div>
-<script>
-    const email=document.getElementById('email');
-    email.addEventListener('input',() => ValidateEmail(email));
-    const submit=document.getElementById('submit');
-    submit.addEventListener('click',() => ValidateEmail(email));
-    function ValidateEmail(element) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (!emailPattern.test(element.value)) {
-        element.setCustomValidity('Please enter a valid email address');
-        element.reportValidity();
-    } else {
-        element.setCustomValidity('');
-    }
-}
-    </script>
-<!--<script>
-    const dob=document.getElementById('date');
-    dob.addEventListener('input',()=>ValidateAge(dob));
-    function ValidateAge(element){
-        const today=new Date();
-        const bday=new Date(element.value);
-        const age=Math.floor((Date.parse(today)-Date.parse(bday))/31536000000);
-        if (age<18 || age>55){
-            element.setCustomValidity('You must be between 18 and 55 years old');
+    <div class="relative flex min-h-screen flex-col jsutify-center overflow-hidden py-6 bg-gray-50 ">
+        <div class="relative bg-white px-6 pb-5 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+            <div class="mx-auto max-w-md">
+                <h2 class="text-2xl  text-center font-bold my-5">
+                    Registration From
+                </h2>
+                <div class="divide-y  divide-gray-300/50">
+                    <div class="space-y-6 text-base leading-7 text-ray-600">
+                        <form action="" id="user_form">
+                            <label for="name" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
+                                Name
+                            </label>
+                            <input required type="text" id="name" name="name" class="bg-gray-100 inline-block rounded-lg shadow-md py-3 px-4 mb-5 text-base leading-6 placeolder-gray-500" placeholder="Enter full name" required><br/>
+                            <label for="email" class="text-md w-40 inline-block font-medium leading-3 text-gray-700">Email</label>
+                            <input required type="email" id="email" name="email" class="bg-gray-100 inline-block rounded-lg shadow-md py-3 px-4 mb-5 text-base leading-6 placeolder-gray-500" placeholder="Enter email"><br/>
+                            <label for="password" class="text-md w-40 inline-block font-medium leading-5 text-gray-700">
+                                Password
+                            </label>
+                            <input required type="password" id="password" name="password" class="bg-gray-100 inline-block rounded-lg shadow-md py-3 px-4 mb-5 text-base leading-6 placeolder-gray-500" placeholder="Enter password"><br/>
+                            <label for="dob" class="text-md w-40 inline-block font-medium leading-5 text-gray-700" min="18" max="55">
+                                Date of Birth
+                            </label>
+                            <input required type="date" id="dob" name="dob" class="bg-gray-100 inline-block rounded-lg shadow-md py-3 px-4 mb-5 text-base leading-6 placeolder-gray-500" placeholder="dd/mm/yyyy"><br/>
+                        <label for="acceptTerms" class="text-md w-50 inline-block font-medium leading-5 text-gray-700 mr-4">Accept our Terms & Conditions</label>
+                            <input required type="checkbox" name="acceptTerms" id="acceptTerms" class="bg-gray-100 inline-block shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-gray-500">
+                        <button type="submit" id="submit" class="w-fit rounded-lg shadow-lg px-5 py-3 bg-green-500 text-white hover:bg-green-400 focus:outline-none focus block">Submit</button>
+                        </form>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
+       
+        </div>
+        <div class="relative bg-white px-4 mt-5 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-10 ">
+            <div class="mx-auto">
+                <h2 class="text-xl text-center font-bold leadin-right">Entries</h2>
+                <div class="divide-y divide-gray-300/50" id="user-entries"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+        const email = document.getElementById('email');
+        email.addEventListener('input',()=>validate(email));
+       const submit = document.getElementById(submit)
+       submit.addEventListener('click',()=>validate(email))
+        function validate(element){
+            if(element.validity.typeMismatch){
+                element.setCustomValidity("The Email is not the right format");
+                element.reportValidity();
+            }else{
+                element.setCustomValidity('');
+            }
         }
-        else{
-            element.setCustomValidity('');          
-        }
-        element.reportValidity();
-    }
-</script>-->
-<script src="index.js"></script>
+    </script> -->
+    <script src="new.js"></script>
 </body>
 </html>
