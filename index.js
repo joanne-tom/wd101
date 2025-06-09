@@ -1,4 +1,15 @@
 let userform=document.getElementById('user-form');
+let userEntries=JSON.parse(localStorage.getItem("userEntries")) || [];
+function isAgeValid(dob) {
+  const birthDate = new Date(dob);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age >= 18 && age <= 55;
+}
 const retrieveEntries=()=>{
     let entries=localStorage.getItem('userEntries');
     if(entries){
@@ -9,7 +20,6 @@ const retrieveEntries=()=>{
     };
 return entries    
 };
-let userEntries=retrieveEntries();
 const DisplayEntries = () => {
     const entries = retrieveEntries();
     const tableEntries = entries.map((entry) => {
@@ -42,6 +52,13 @@ const saveUserForm=(event)=>{
     const password=document.getElementById('password').value;
     const dob=document.getElementById('date').value;
     const accept=document.getElementById('accept').checked;
+    if (!isAgeValid(dob)) {
+    document.getElementById('date').style.border = '1px solid red';
+    alert("Age must be between 18 and 55");
+    return;
+  } else {
+    document.getElementById('date').style.border = 'none';
+  };
 
     entry={
         name,
@@ -53,6 +70,7 @@ const saveUserForm=(event)=>{
     userEntries.push(entry);
     localStorage.setItem('userEntries',JSON.stringify(userEntries));
     DisplayEntries();
+    userform.reset();
 }
 userform.addEventListener('submit', (event) => saveUserForm(event));
 DisplayEntries();
