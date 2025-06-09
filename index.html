@@ -1,0 +1,57 @@
+<style>
+    input#name:invalid:focus{
+        border: 1px solid red;
+    }
+     input#email:invalid:focus{
+        border: 1px solid red;
+    }
+</style>
+<form id="user-form" style="text-align:center;margin-top: 200px;display: flex; flex-direction: column; align-items: center; border: 1px solid black; padding: 10px; border-radius: 10px;" class="form-example">
+    <label for="name" style="font-size: x-large;margin-bottom: 10px;">Username
+    </label>
+    <input required type="text" id="name" style="margin-bottom: 10px;"><br>
+    <label for="email" style="font-size: x-large;margin-bottom: 10px;">Email
+    </label>
+    <input required type="email" id="email" style="margin-bottom: 10px;"><br>
+    <label for="password" style="font-size: x-large;margin-bottom: 10px;">Password</label>
+    <input required type="password" id="password" style="margin-bottom: 10px;"><br>
+    <label for="date" style="font-size: x-large;margin-bottom: 10px;">DOB</label>
+    <input required type="date" id="date" style="margin-bottom: 10px;"><br>
+    <label for="accept" style="font-size: x-large;margin-bottom: 10px;">Accept terms and conditions</label>
+    <input required type="checkbox" id="accept" style="margin-bottom: 10px;"><br>
+    <button type="submit" id="submit" style="margin-bottom: 10px; background-color: lightgreen; padding: 12px 24px; font-size: 16px;border-radius: 6px;">Submit</button>
+</form>
+<div id="user-entries"></div>
+<script>
+    const email=document.getElementById('email');
+    email.addEventListener('input',() => ValidateEmail(email));
+    const submit=document.getElementById('submit');
+    submit.addEventListener('click',() => ValidateEmail(email));
+    function ValidateEmail(element){
+        if(element.validity.typeMismatch){
+            element.setCustomValidity('The email is not right. @ missing');
+            element.reportValidity();
+        }
+        else{
+            element.setCustomValidity('');
+        }
+    }
+    const dob=document.getElementById('date');
+    dob.addEventListener('input',()=>ValidateAge(dob));
+    function ValidateAge(element){
+        const today=new Date();
+        const bday=element.value;
+        const age=Math.floor((Date.parse(today)-Date.parse(bday))/31536000000);
+        if (age<18){
+            element.setCustomValidity('You must be 18 years old');
+        }
+        else if(age>55){
+            element.setCustomValidity('You must be less than 55 years old');
+        }
+        else{
+            element.setCustomValidity('');          
+        }
+        element.reportValidity();
+    }
+</script>
+<script src="index.js"></script>
