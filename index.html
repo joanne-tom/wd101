@@ -1,3 +1,6 @@
+<!--<h1>Hello world</h1>
+<a href="index.html">Home</a>
+<img src="https://www.google.com/imgres?q=current%20edt%20time&imgurl=https%3A%2F%2Farahr.com%2Fstatic%2Fus-time-zone-map-91bca8fe4f3040203f6d318d31ce14fd.png&imgrefurl=https%3A%2F%2Farahr.com%2Ftime-zone%2F&docid=ve3G6kz7d-NBHM&tbnid=RWG-dEADN82N2M&vet=12ahUKEwjgoMjn9teNAxWBQ2cHHfo-MgQQM3oECGsQAA..i&w=1300&h=900&hcb=2&ved=2ahUKEwjgoMjn9teNAxWBQ2cHHfo-MgQQM3oECGsQAA" alt="Hey">-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,20 +32,22 @@
     <button type="submit" id="submit" style="margin-bottom: 10px; background-color: lightgreen; padding: 12px 24px; font-size: 16px;border-radius: 6px;">Submit</button>
 </form>
 <div id="user-entries"></div>
-<!--<script>
+<script>
     const email=document.getElementById('email');
     email.addEventListener('input',() => ValidateEmail(email));
     const submit=document.getElementById('submit');
     submit.addEventListener('click',() => ValidateEmail(email));
-    function ValidateEmail(element){
-        if(element.validity.typeMismatch){
-            element.setCustomValidity('The email is not right. @ missing');
-            element.reportValidity();
-        }
-        else{
-            element.setCustomValidity('');
-        }
+    function ValidateEmail(element) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!emailPattern.test(element.value)) {
+        element.setCustomValidity('Please enter a valid email address');
+        element.reportValidity();
+    } else {
+        element.setCustomValidity('');
     }
+}
+    </script>
+<!--<script>
     const dob=document.getElementById('date');
     dob.addEventListener('input',()=>ValidateAge(dob));
     function ValidateAge(element){
